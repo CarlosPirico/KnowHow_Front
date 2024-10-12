@@ -2,19 +2,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as LockIcon } from '../../assets/icons/lock.svg'; // Substitua com seu SVG
+import InputSimple from '../atoms/Input';
 
 const LoginPage = () => {
     return (
         <LoginContainer>
             <Title>Login</Title>
             <InputContainer>
-                <Input type="text" placeholder="RA" />
+              {InputSimple('RA')}
             </InputContainer>
             <InputContainer>
-                <Input type="password" placeholder="SENHA" />
-                <LockIconContainer>
-                    <LockIcon width={20} height={20} />
-                </LockIconContainer>
+              {InputSimple("SENHA")}
+              <LockIconContainer>
+                  <LockIcon width={20} height={20} />
+              </LockIconContainer>
             </InputContainer>
             <ForgotPasswordLink href="#">Recuperar senha.</ForgotPasswordLink>
         </LoginContainer>
@@ -45,21 +46,6 @@ const InputContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  padding-right: 40px;
-  border: 2px solid #eaeaea;
-  border-radius: 50px;
-  font-size: 16px;
-  outline: none;
-  color: #333;
-
-  &::placeholder {
-    color: #aaa;
-  }
-`;
-
 const LockIconContainer = styled.div`
   position: absolute;
   top: 50%;
@@ -71,8 +57,4 @@ const ForgotPasswordLink = styled.a`
   font-size: 14px;
   color: #888;
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `;
