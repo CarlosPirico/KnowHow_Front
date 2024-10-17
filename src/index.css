@@ -1,4 +1,8 @@
 body {
     margin: 0;
-    font-family: '"Poppins", sans-serif';
+    font-family: "Poppins", sans-serif !important;
+}
+
+.icon-default path {
+    fill: #7F7F7F;
 }
