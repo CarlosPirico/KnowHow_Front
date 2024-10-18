@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import InputSimple from '../atoms/Input';
-import { Icon } from '../atoms/Icon';
+import { ArrowRight } from '../atoms/Icon';
 
 const PasswordInput = (placeHolder: string) => {
     return (
         <InputContainer>
             {InputSimple(placeHolder, 'password')}
-            <LockIconContainer>
-                {Icon()}
+            <LockIconContainer href="/home">
+                {ArrowRight()}
             </LockIconContainer>
         </InputContainer>
     )
@@ -19,10 +19,17 @@ const InputContainer = styled.div`
   margin-bottom: 6px
 `;
 
-const LockIconContainer = styled.div`
+const LockIconContainer = styled.a`
   position: absolute;
-  top: 29%;
+  top: 5%;
   right: 8%;
+  padding: 10px;
+  border-radius: 25px;
+  height: 21px;
+  width: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default PasswordInput;

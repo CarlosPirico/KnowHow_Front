@@ -1,55 +1,41 @@
 // src/components/pages/LoginPage.tsx
+import { useState, useEffect } from 'react';
+import { Logo } from '../atoms/Logo';
+import { RegisterForm } from '../molecules/RegisterForm';
+import { LoginForm } from '../molecules/LoginForm';
+import LoginOption from '../molecules/LoginOption';
 import styled from 'styled-components';
-import InputSimple from '../atoms/Input';
-import PasswordInput from '../molecules/PasswordInput';
-import TitleSimple from '../atoms/Title';
-import { typographyPoppins } from '../../styles/typography';
-import Background from '../atoms/Background';
+import { Modal } from '../molecules/Modal';
 
 const LoginPage = () => {
-    return (
-      <Background imageUrl="/images/background.jpg">
-        <Page>
-          <LoginContainer>
-              {TitleSimple('Login')}
-              <InputContainer>
-                {InputSimple('RA')}
-              </InputContainer>
-              {PasswordInput('SENHA')}
-              <ForgotPasswordLink href="#">Recuperar senha.</ForgotPasswordLink>
-          </LoginContainer>
-        </Page>
-      </Background>
-    );
+  const [screen, setScreen] = useState<'logo' | 'options' | 'login' | 'register'>('logo');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setScreen('options'), 3000); // Transição após 3 segundos
+    return () => clearTimeout(timer);
+  }, []);
+
+  const openModal = (content: React.ReactNode) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <Page>
+      {screen === 'logo' && <Logo src="/images/logoKnowHow.png" />} {/* Exibe a logo */}
+      {screen === 'options' && LoginOption(() => openModal(<LoginForm />),() => openModal(<RegisterForm />))}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        {modalContent}
+      </Modal>
+    </Page>
+  );
 };
 
-export default LoginPage;
-
-// Styled Components
-
 const Page = styled.div`
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-`;
-const LoginContainer = styled.div`
-    background-color: #fff;
-    border-radius: 24px;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    margin: auto auto;
-    border: 1px solid #E9E9E9;
-    border-top-width: 4px;
-`;
+    width: 100%;
+    height: 100%;
+`
 
-const InputContainer = styled.div`
-  position: relative;
-  margin-bottom: 7px;
-`;
-
-const ForgotPasswordLink = styled.a`
-  font-size: ${typographyPoppins.fontSizes.micro};
-  font-weight: ${typographyPoppins.fontWeights.regular};
-  color: #B0B0B0;
-`;
+export default LoginPage;

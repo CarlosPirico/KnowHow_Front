@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { typographyPoppins } from '../../styles/typography';
 
 const Input = styled.input`
-    width: 90%;
+    width: 80%;
     padding: 14px;
     border: 1px solid #D9D9D9;
     border-radius: 50px;

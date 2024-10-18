@@ -1,8 +1,11 @@
 body {
     margin: 0;
     font-family: "Poppins", sans-serif !important;
+    width: 100vw;
+    height: 100vh;
 }
 
-.icon-default path {
-    fill: #7F7F7F;
+#root {
+    padding: 0 21px;
+    height: 100%;
 }

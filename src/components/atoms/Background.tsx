@@ -10,12 +10,12 @@ interface BackgroundProps {
 
 // Criando um container estilizado com background dinâmico
 const BackgroundContainer = styled.div<BackgroundProps>`
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url(${props => props.imageUrl});
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 `;
